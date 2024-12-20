@@ -2,20 +2,17 @@ import { FullBlog } from '@/@types/interface';
 import { fetchPost } from '@/lib/request/fetch';
 import { urlFor } from '@/lib/sanity';
 import Image from 'next/image';
-import React from 'react';
 import { PortableText } from '@portabletext/react';
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
+export type PageProps = {
+  params: { slug: string };
 };
 
 const page = async ({ params }: PageProps) => {
   const data: FullBlog = await fetchPost(params.slug);
 
   return (
-    <div className="container mx-auto mt-16 sm:mt-32 max-sm:px-4">
+    <div className="container mx-auto mt-16 sm:mt-32">
       <h1>
         <span className="block text-base text-center animate-pulse text-pretty font-semibold tracking-tight ">
           Moein Samani -- Blog
@@ -29,7 +26,7 @@ const page = async ({ params }: PageProps) => {
         height={800}
         priority
         alt="Picture"
-        className="mt-12 rounded-2xl border shadow-2xl mx-auto w-full "
+        className="mt-12 rounded-2xl border shadow-2xl mx-auto w-full px-4"
         src={urlFor(data.titleImage?.asset?._ref).url()}
       />
       <div className="mt-16 prose-blue prose-xl max-sm:px-5 prose-headings:underline prose-li:text-purple-900">
